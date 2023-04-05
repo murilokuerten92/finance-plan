@@ -17,7 +17,10 @@ type NewTransactionFormInputs = z.infer<typeof newTransactionFormSchema>;
 export function NewTransactionModal() {
 
     const { control, register, handleSubmit, formState: { isSubmitting } } = useForm<NewTransactionFormInputs>({
-        resolver: zodResolver(newTransactionFormSchema)
+        resolver: zodResolver(newTransactionFormSchema),
+        defaultValues: {
+            type: 'income'
+        }
     })
 
     function handleCreateNewTransaction(data: NewTransactionFormInputs) {
@@ -52,7 +55,8 @@ export function NewTransactionModal() {
                                         <ArrowCircleDown size={24} />
                                         Saída
                                     </TransactionTypeButton>
-                                </TransactionType>)
+                                </TransactionType>
+                            )
                         }}
                     />
 
